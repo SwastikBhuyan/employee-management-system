@@ -24,4 +24,20 @@ public class Employee {
     private String address;
     private String status;
 
+    public Employee(Long id, String name, String email, String phoneNumber, String position, String department, LocalDate dateOfJoining, int salary, String address, String status) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.position = position;
+        this.department = department;
+        this.dateOfJoining = dateOfJoining;
+        this.salary = salary;
+        this.address = address;
+        this.status = status;
+    }
+
+    public Employee() {
+
+    }
 }
