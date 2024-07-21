@@ -1,10 +1,10 @@
-package controller;
+package org.swastik.employeeManagementSystem.controller;
 
-import entity.Employee;
+import org.swastik.employeeManagementSystem.entity.Employee;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import service.EmployeeService;
+import org.swastik.employeeManagementSystem.service.EmployeeService;
 
 import java.util.List;
 
@@ -28,7 +28,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees/department")
-    public ResponseEntity<?> getEmployeeByDepartment(@RequestParam String department) {
+    public ResponseEntity<?> getEmployeesByDepartment(@RequestParam String department) {
         try {
             List<Employee> employees = employeeService.findEmployeesByDepartment(department);
             return new ResponseEntity<>(employees, HttpStatus.OK);
@@ -47,18 +47,18 @@ public class EmployeeController {
         }
     }
 
-    //DELETE methods
+    // DELETE method
     @DeleteMapping("/employees/{id}")
     public ResponseEntity<?> deleteEmployeeById(@PathVariable Long id) {
         try {
             employeeService.deleteEmployeeById(id);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
-    //POST method
+    // POST method
     @PostMapping("/employees")
     public ResponseEntity<?> addNewEmployee(@RequestBody Employee employee) {
         try {
@@ -69,11 +69,11 @@ public class EmployeeController {
         }
     }
 
-    //PUT method
+    // PUT method
     @PutMapping("/employees/{id}")
     public ResponseEntity<?> updateEmployeeById(@PathVariable Long id, @RequestBody Employee employee) {
         try {
-            employeeService.updateEmployeeById(id,employee);
+            employeeService.updateEmployeeById(id, employee);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);

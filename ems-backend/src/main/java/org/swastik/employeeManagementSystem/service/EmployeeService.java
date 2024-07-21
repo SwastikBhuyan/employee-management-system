@@ -1,8 +1,8 @@
-package service;
+package org.swastik.employeeManagementSystem.service;
 
-import entity.Employee;
+import org.swastik.employeeManagementSystem.entity.Employee;
 import org.springframework.stereotype.Service;
-import repository.EmployeeRepository;
+import org.swastik.employeeManagementSystem.repository.EmployeeRepository;
 
 import java.util.List;
 

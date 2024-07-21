@@ -1,6 +1,6 @@
-package repository;
+package org.swastik.employeeManagementSystem.repository;
 
-import entity.Employee;
+import org.swastik.employeeManagementSystem.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
