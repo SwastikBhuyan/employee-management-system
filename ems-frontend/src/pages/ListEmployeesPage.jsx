@@ -6,10 +6,8 @@ export function ListEmployeesPage() {
     const [employees, setEmployees] = useState([]);
 
     useEffect(() => {
-        // Replace with your API endpoint
         getEmployees()
             .then((response) => setEmployees(response.data))
-            // .then((data) => setEmployees(data))
             .catch((error) =>
                 console.error("Error fetching employees:", error)
             );
