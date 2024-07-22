@@ -1,4 +1,5 @@
 import "./App.css";
+import AddEmployee from "./pages/AddEmployee";
 import EditEmployee from "./pages/EditEmployee";
 import { ListEmployeesPage } from "./pages/ListEmployeesPage";
 import LoginPage from "./pages/LoginPage";
@@ -17,6 +18,7 @@ function App() {
                     <Route path="/employees" element={<ListEmployeesPage />} />
                     <Route path="/employees/:id" element={<ViewEmployee />} />
                     <Route path="/employees/:id/edit" element={<EditEmployee />} />
+                    <Route path="/employees/add" element={<AddEmployee />} />
                 </Routes>
             </BrowserRouter>
         </div>
