@@ -1,6 +1,7 @@
 import "./App.css";
 import { ListEmployeesPage } from "./pages/ListEmployeesPage";
 import LoginPage from "./pages/LoginPage";
+import ViewEmployee from "./pages/ViewEmployee";
 import WelcomePage from "./pages/WelcomePage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -13,6 +14,8 @@ function App() {
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/welcome" element={<WelcomePage />} />
                     <Route path="/employees" element={<ListEmployeesPage />} />
+                    <Route path="/employees/:id" element={<ViewEmployee />} />
+                    <Route path="/employees/:id/edit" element={<ListEmployeesPage />} />
                 </Routes>
             </BrowserRouter>
         </div>
