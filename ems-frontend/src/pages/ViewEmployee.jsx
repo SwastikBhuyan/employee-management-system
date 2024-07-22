@@ -22,7 +22,7 @@ const ViewEmployee = () => {
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
             <div className="max-w-lg w-full bg-white shadow-lg rounded-lg p-6">
-                {employee ? (
+                {employee && (
                     <div>
                         <h1 className="text-2xl font-bold text-gray-800 mb-4">Employee Details</h1>
                         <div className="space-y-4">
@@ -37,8 +37,6 @@ const ViewEmployee = () => {
                             <p className="text-lg font-medium text-gray-700"><span className="font-semibold">Status:</span> {employee.status}</p>
                         </div>
                     </div>
-                ) : (
-                    <p className="text-gray-700">Loading...</p>
                 )}
             </div>
         </div>
