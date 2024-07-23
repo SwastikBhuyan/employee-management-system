@@ -12,7 +12,7 @@ const LoginPage = () => {
         event.preventDefault()
         if (username === "admin" && password === "admin") {
             console.log("login successful")
-            navigate("/employees")
+            navigate("/welcome")
         }
         else setLoginError(true)
     }
