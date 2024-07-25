@@ -1,54 +1,47 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {useEffect, useState} from "react";
+import {getEmployees, getEmployeesByDepartment} from "../apis/EmployeeApi";
+import {useNavigate} from "react-router-dom";
 import EmployeeCard from "./EmployeeCard";
-import { getEmployees, getEmployeesByDepartment } from "../apis/EmployeeApi";
 
 export function ListEmployeesPage() {
-    const [employees, setEmployees] = useState([]);
-    const [department, setDepartment] = useState("");
+    const [employees, setEmployees] = useState([])
+    const [department, setDepartment] = useState("")
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (department === "") {
+        if (department == "") {
             getEmployees()
-                .then((response) => setEmployees(response.data))
-                .catch((error) =>
-                    console.log("Error fetching employees: ", error)
-                );
+                .then((response) => {
+                    setEmployees(response.data)
+                    console.log(response)
+                })
+                .catch((error) => console.log(error))
         } else {
             getEmployeesByDepartment(department)
                 .then((response) => setEmployees(response.data))
-                .catch((error) =>
-                    console.log("Error fetching employees: ", error)
-                );
+                .catch((error) => console.log(error))
         }
     }, [department]);
 
-    const handleDepartmentChange = (event) => {
-        setDepartment(event.target.value);
-    };
+    function handleDepartmentChange(event) {
+        setDepartment(event.target.value)
+    }
 
-    const handleDelete = (id) => {
-        setEmployees(employees.filter((employee) => employee.id !== id));
-    };
+    function handleAddEmployee() {
+        navigate("/employees/add")
+    }
 
-    const handleAddEmployee = () => {
-        navigate('/employees/add');
-    };
+    function handleDelete(id) {
+        setEmployees(employees.filter((employee) => (employee.id !== id)))
+    }
 
     return (
         <div className="flex min-h-screen justify-center items-center bg-gray-100">
-            <div className="container mx-auto p-10">
+            <div className="mx-auto p-10">
                 <h1 className="text-4xl font-bold mb-5">Employees List</h1>
-                <div>
-                    <label htmlFor="department"></label>
-                    <select
-                        name="department"
-                        id="department"
-                        value={department}
-                        className="mb-5 rounded p-2 border-black"
-                        onChange={handleDepartmentChange}
-                    >
+                <div className="">
+                    <label htmlFor=""></label>
+                    <select onChange={handleDepartmentChange} name="department" id="department" value={department} className="py-2 px-3 mb-5 rounded border-black border-2">
                         <option value="">All Departments</option>
                         <option value="Engineering">Engineering</option>
                         <option value="Sales">Sales</option>
@@ -56,22 +49,19 @@ export function ListEmployeesPage() {
                         <option value="Finance">Finance</option>
                     </select>
                 </div>
-                <button
-                    className="bg-green-700 rounded text-white px-10 py-2 mb-5"
-                    onClick={handleAddEmployee}
-                >
-                    Add Employee
+                <button onClick={handleAddEmployee} className="text-white bg-green-600 p-2 rounded px-3 mb-5">
+                    Add New Employee
                 </button>
-                <div className="card-container grid grid-cols-3 gap-6">
+                <div className="grid grid-cols-3 gap-6">
                     {employees.map((employee) => (
                         <EmployeeCard
-                            key={employee.id}
-                            employee={employee}
-                            onDelete={handleDelete}
+                            key = {employee.id}
+                            employee = {employee}
+                            onDelete = {handleDelete}
                         />
                     ))}
                 </div>
             </div>
         </div>
-    );
+    )
 }
